@@ -1,17 +1,45 @@
-// date.cpp
+#include <iostream> // iostream-et eleg itt include-olni a headerben nem kell!
 #include "date.h"
 
-int main() {
-	Date jan1_1970(1, 1, 1970);
-	jan1_1970.print(); // Elvaras: JAN 1, 1970
-	Date date_with_typo(1, 13, 2022); // nincs 13. honap
-	date_with_typo.print();
-    Date feb_29_2023(29, 2, 2023); // 2024 a szölőév
-    Date feb_29_2024(29, 2, 2024); // ez OK!
-    Date mar_31_2022(31, 3, 2022); // ez is OK!
-    Date apr_31_2022(31, 4, 2022); // ajaj, április csak 30 napos
-    feb_29_2023.print();
-    feb_29_2024.print();
-    mar_31_2022.print();
-    apr_31_2022.print();
+Date::Date(int day, int month, int year) {
+	_month = _is_month_admissible(month) ? month : 0;
+	_day = _is_day_admissible(day, month, year) ? day : 0;
+	_year = year;
+}
+
+void Date::print() {
+	std::cout <<
+		monthNames[_month] << " " <<
+		_day << ", " <<
+		_year << std::endl;
+}
+
+std::string Date::monthNames[] = {
+		"BADMONTH",
+		"JAN", "FEB", "MAR", "APR",
+		"MAY", "JUN", "JUL", "AUG",
+		"SEP", "OCT", "NOV", "DEC"
+};
+
+int Date::_number_of_days_in_month(int month, int year) {
+	if (month == 4 || month == 6 || month == 9 || month == 11) {
+		return 30;
+	}
+	if (month == 1 || month == 3 || month == 5 || month == 7
+		|| month == 8 || month == 10 || month == 12) {
+		return 31;
+	}
+	if (month == 2) {
+		return year % 4 == 0 ? 29 : 28;
+	}
+	return 0;
+}
+
+bool Date::_is_day_admissible(int day, int month, int year) {
+	// akkor is false, ha month nem admissible, mert _number_of...() 0-at ad vissza
+	return (day > 0 && day < 1 + _number_of_days_in_month(month, year));
+}
+
+bool Date::_is_month_admissible(int month) {
+	return (month < 13 && month > 0);
 }
