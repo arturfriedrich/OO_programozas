@@ -1,4 +1,6 @@
-#include <iostream> // iostream-et eleg itt include-olni a headerben nem kell!
+// date.cpp
+// a szükséges eljárások és függvények elkülönítve az olvashatóság és struktúra miatt
+#include <iostream>                  // iostream-et eleg itt include-olni a headerben nem kell!
 #include "date.h"
 
 using namespace std;
@@ -43,6 +45,7 @@ std::string Date::monthNames[] = {
 };
 
 int Date::_number_of_days_in_month(int month, int year) {
+    // visszaadja, hogy az adott hónap adott évben hány napos
 	if (month == 4 || month == 6 || month == 9 || month == 11) {
 		return 30;
 	}
@@ -57,15 +60,18 @@ int Date::_number_of_days_in_month(int month, int year) {
 }
 
 bool Date::_is_day_admissible(int day, int month, int year) {
+    // létezik-e ilyen sorszámú nap
 	// akkor is false, ha month nem admissible, mert _number_of...() 0-at ad vissza
 	return (day > 0 && day < 1 + _number_of_days_in_month(month, year));
 }
 
 bool Date::_is_month_admissible(int month) {
+    // létezik-e ilyen sorszámú hónap
 	return (month < 13 && month > 0);
 }
 
 int Date::_days_left_in_month(int day, int month, int year) {
+    // a megfelelő váltáshoz kell, amikor több napot adunk a naphoz mint amennyi egy hónapban van
     int totalDaysInMonth = _number_of_days_in_month(month, year);
     return totalDaysInMonth - day;
 }
