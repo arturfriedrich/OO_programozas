@@ -1,0 +1,330 @@
+class/1
+/* Sorminta készítése, első nekifutás :) */
+#include <iostream>
+using namespace std;
+
+#define SK 4                           /* Kiírandó sorok száma */
+
+class sor_minta /* Osztály deklarációja */
+ {
+   //public:
+   char kar; /* kiirandó karakter */
+   int ism;  /* soron belüli ismétlődések száma */
+   int sor;  /* sorok száma, amennyiben megjelenjen */
+ };
+
+int main(void)
+ {
+  int i, j; 
+  sor_minta nyzj, es, zzj;          /* Objektumok példányosítása */
+  nyzj.kar='['; nyzj.ism=2; nyzj.sor=2;    /* Objektumok tagjainak a kezdőértékei */
+  es.kar='&';   es.ism=3;   es.sor=3;      /* Objektumok tagjainak a kezdőértékei */
+  zzj.kar=']';  zzj.ism=4;  zzj.sor=1;     /* Objektumok tagjainak a kezdőértékei */
+  cout << "\n" << endl;
+  for(i=0; i<SK; i++)                               /* Sorok kiírása */
+   {
+    for(j=0; j<nyzj.ism; j++)                /* Soron belüli kiírás */
+     {
+      if(i<nyzj.sor) cout << nyzj.kar;
+      else cout << "-";
+     }
+    for(j=0; j<es.ism; j++)                 /* Soron belüli kiírás */
+     {
+      if(i<es.sor) cout << es.kar;
+      else cout << "-";
+     }
+    for(j=0; j<zzj.ism; j++)                /* Soron belüli kiírás */
+     {
+      if(i<zzj.sor) cout << zzj.kar;
+      else cout << "-";
+     }
+    cout << "\n" << endl;
+   }
+    return 0;
+}
+/***************************************************************************************/
+class/2-1
+#include <iostream>
+using namespace std;
+
+#define SK 4                           /* Kiírandó sorok száma */
+
+class sor_minta /* Osztály deklarációja */
+ {
+   private:
+    char kar; /* kiirandó karakter */
+    int ism;  /* soron belüli ismétlődések száma */
+    int sor;  /* sorok száma, amennyiben megjelenjen */
+   public:
+    void kiir(int i, char kr, int im, int sr);
+ };
+
+void sor_minta::kiir(int i, char kr, int im, int sr)
+ {
+  kar=kr; ism=im; sor=sr;
+  int j;
+  for(j=0; j<ism; j++)                /* Soron belüli kiírás */
+   {
+    if(i<sor) cout << kar;
+    else cout << "-";
+   }
+ }
+
+int main(void)
+ {
+  int i; 
+  sor_minta nyzj, es, zzj;          /* Objektumok példányosítása */
+  cout << "\n" << endl; 
+  for(i=0; i<SK; i++)              /* Sorok kiírása */
+   {
+    nyzj.kiir(i,'[',2,2);
+    es.kiir(i,'&',3,3);
+    zzj.kiir(i,']',4,1);
+    cout << "\n" << endl;
+   }
+  return 0;
+}
+/***************************************************************************************/
+class/2-2
+#include <iostream>
+using namespace std;
+
+#define SK 4                           /* Kiírandó sorok száma */
+
+class sor_minta /* Osztály deklarációja */
+ {
+   private:
+    char kar; /* kiirandó karakter */
+    int ism;  /* soron belüli ismétlődések száma */
+    int sor;  /* sorok száma, amennyiben megjelenjen */
+   public:
+    void kezdo(char kr, int im, int sr) { kar=kr; ism=im; sor=sr; }
+    void kiir(int i);
+ };
+void sor_minta::kiir(int i)
+ {
+  for(int j=0; j<ism; j++)                /* Soron belüli kiírás */
+   {
+    if(i<sor) cout << kar;
+    else cout << "-";
+   }
+ }
+
+int main(void)
+ {
+  sor_minta nyzj, es, zzj;          /* Objektumok példányosítása */
+  nyzj.kezdo('[',2,2); es.kezdo('&',3,3); zzj.kezdo(']',4,1);
+  cout << "\n" << endl; 
+  for(int i=0; i<SK; i++)              /* Sorok kiírása */
+   {
+    nyzj.kiir(i); es.kiir(i); zzj.kiir(i);
+    cout << "\n" << endl;
+   }
+  return 0;
+}
+/***************************************************************************************/
+class/3
+#include <iostream>
+using namespace std;
+
+#define SK 4                           /* Kiírandó sorok száma */
+
+class sor_minta /* Osztály deklarációja */
+ {
+   private:
+    char kar; /* kiirandó karakter */
+    int ism;  /* soron belüli ismétlődések száma */
+    int sor;  /* sorok száma, amennyiben megjelenjen */
+   public:
+    void kezdo(char kr, int im, int sr) { kar=kr; ism=im; sor=sr; }
+    void kiir(int i);
+    void elemek() { cout << kar <<ism <<sor << endl; }
+ };
+void sor_minta::kiir(int i)
+ {
+  for(int j=0; j<ism; j++)                /* Soron belüli kiírás */
+   {
+    if(i<sor) cout << kar;
+    else cout << "-";
+   }
+ }
+
+int main(void)
+ {
+  sor_minta nyzj, es, zzj;          /* Objektumok példányosítása */
+  es.elemek();
+  nyzj.kezdo('[',2,2); es.kezdo('&',3,3); zzj.kezdo(']',4,1);
+  es.elemek(); 
+  cout << "\n" << endl; 
+  for(int i=0; i<SK; i++)              /* Sorok kiírása */
+   {
+    nyzj.kiir(i); es.kiir(i); zzj.kiir(i);
+    cout << "\n" << endl;
+   }
+  es.elemek(); 
+  return 0;
+}
+/***************************************************************************************/
+class/4
+#include <iostream>
+using namespace std;
+
+#define SK 4                           /* Kiírandó sorok száma */
+
+class sor_minta /* Osztály deklarációja */
+ {
+   private:
+    char kar; /* kiirandó karakter */
+    int ism;  /* soron belüli ismétlődések száma */
+    int sor;  /* sorok száma, amennyiben megjelenjen */
+   public:
+    sor_minta() { kar='A'; ism=1; sor=1; }  /* Alapértelmezett konstruktor */
+    sor_minta(char kr, int im, int sr)          /* Alapérték beállító konstruktor */
+     { kar=kr; ism=im; sor=sr; }
+    void kiir(int i);
+    void elemek() { cout << kar <<ism <<sor << endl; }
+ };
+void sor_minta::kiir(int i)
+ {
+  for(int j=0; j<ism; j++)                /* Soron belüli kiírás */
+   {
+    if(i<sor) cout << kar;
+    else cout << "-";
+   }
+ }
+
+int main(void)
+ {
+  sor_minta nyzj('[',2,2), es('&',3,3), zzj(']',4,1), alap;     /* Objektumok példányosítása, beállítása */
+  alap.elemek(); es.elemek(); cout << "\n" << endl; 
+  for(int i=0; i<SK; i++)              /* Sorok kiírása */
+   {
+    nyzj.kiir(i); es.kiir(i); zzj.kiir(i);
+    cout << "\n" << endl;
+   }
+  es.elemek(); 
+  alap.elemek();
+  return 0;
+}
+/***************************************************************************************/
+class/5-1
+#include <iostream>
+using namespace std;
+
+#define SK 4                           /* Kiírandó sorok száma */
+
+class sor_minta /* Osztály deklarációja */
+ {
+   private:
+    char kar; /* kiirandó karakter */
+    int ism;  /* soron belüli ismétlődések száma */
+    int sor;  /* sorok száma, amennyiben megjelenjen */
+    int v_m;  /* változtatás mértéke az "ism"-re */
+   public:
+    sor_minta() { kar='A'; ism=1; sor=1; }  /* Alapértelmezett konstruktor */
+    sor_minta(char kr, int im, int sr)          /* Alapérték beállító konstruktor */
+     { kar=kr; ism=im; sor=sr; }
+    sor_minta(int v_m);                            /* v_m beállító konstruktor */
+    void kiir(int i);
+    void elemek() { cout << kar <<ism <<sor << endl; }
+    void v_i();
+    ~sor_minta()                                       /* Destruktor */
+     { cout << "A program hibátlanul lefutott!\n"; }
+ };
+void sor_minta::kiir(int i)
+ {
+  for(int j=0; j<ism; j++)                /* Soron belüli kiírás */
+   {
+    if(i<sor) cout << kar;
+    else cout << "-";
+   }
+ }
+ sor_minta::sor_minta(int v_m)        /* v_m beállító konstruktor külső impl. */
+  { v_m=1; }
+void sor_minta::v_i()
+ {
+  do {
+      cout << "\n Kérem a változtatás mértékét [+/-]: ";
+      cin >> v_m;
+     } while((ism+v_m)<=0);
+  ism+=v_m;
+ }
+
+int main(void)
+ {
+  sor_minta nyzj('[',2,2), es('&',3,3), zzj(']',4,1), alap;     /* Objektumok példányosítása, beállítása */
+  alap.elemek(); es.elemek(); cout << "\n" << endl; 
+  for(int i=0; i<SK; i++)              /* Sorok kiírása */
+   {
+    nyzj.kiir(i); es.kiir(i); zzj.kiir(i);
+    cout << "\n" << endl;
+   }
+  es.elemek(); alap.elemek();
+  es.v_i();
+  es.elemek();
+  return 0;
+}
+/***************************************************************************************/
+class/5-2
+#include <iostream>
+using namespace std;
+
+#define SK 4                           /* Kiírandó sorok száma */
+
+class sor_minta /* Osztály deklarációja */
+ {
+   private:
+    char kar; /* kiirandó karakter */
+    int ism;  /* soron belüli ismétlődések száma */
+    int sor;  /* sorok száma, amennyiben megjelenjen */
+    int v_m;  /* változtatás mértéke az "ism"-re */
+   public:
+    sor_minta() { kar='A'; ism=1; sor=1; }  /* Alapértelmezett konstruktor */
+    sor_minta(char kr, int im, int sr)          /* Alapérték beállító konstruktor */
+     { kar=kr; ism=im; sor=sr; }
+    sor_minta(int v_m);                            /* v_m beállító konstruktor */
+    void kiir(int i);
+    void elemek() { cout << kar <<ism <<sor << endl; }
+    void v_i();
+    ~sor_minta()                                       /* Destruktor */
+     { cout << "A program hibátlanul lefutott!\n"; }
+ };
+void sor_minta::kiir(int i)
+ {
+  for(int j=0; j<ism; j++)                /* Soron belüli kiírás */
+   {
+    if(i<sor) cout << kar;
+    else cout << "-";
+   }
+ }
+ sor_minta::sor_minta(int v_m)        /* v_m beállító konstruktor külső impl. */
+  { v_m=1; }
+void sor_minta::v_i()
+ {
+  do {
+      cout << "\n Kérem a változtatás mértékét [+/-]: ";
+      cin >> v_m;
+     } while((ism+v_m)<=0);
+  ism+=v_m;
+ }
+ 
+ void mind(sor_minta nyzj, sor_minta es, sor_minta zzj)
+ {
+  cout << "\n" << endl;
+  for(int i=0; i<SK; i++)              /* Sorok kiírása */
+   {
+    nyzj.kiir(i); es.kiir(i); zzj.kiir(i);
+    cout << "\n" << endl;
+   }
+ }
+ 
+int main(void)
+ {
+  sor_minta nyzj('[',2,2), es('&',3,3), zzj(']',4,1), alap;     /* Objektumok példányosítása, beállítása */
+  alap.elemek(); es.elemek(); cout << "\n" << endl; 
+  mind(nyzj,es,zzj);
+  es.v_i();
+  mind(nyzj,es,zzj);
+  return 0;
+}
+/***************************************************************************************/
