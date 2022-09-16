@@ -1,17 +1,15 @@
-#include <iostream>
+#pragma once
+
 #include <string>
 
-using namespace std;
+namespace Neptun {
 
-class Hallgato {
-    string nev;
-    string neptunkod;
-    public:
-        Hallgato(string neve, string neptunkodja) {         // Konstruktor
-            nev = neve;
-            neptunkod = neptunkodja;
-        }
-        void print() {
-            cout << nev << " - " << neptunkod << endl;
-        }
-};
+	class Hallgato {
+		std::string nev; // adatrejtes elve: adattagok jellemzoen privatak
+		std::string neptunkod;
+	public:
+		Hallgato(std::string nev, std::string neptunkod);
+		void print();
+	};
+
+}
