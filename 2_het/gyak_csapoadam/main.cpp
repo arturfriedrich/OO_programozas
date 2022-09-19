@@ -6,5 +6,7 @@ using namespace Neptun; // nagy projekteknel nem javasolt
 int main() {
 	HallgatoDb hallgatok;
 	hallgatok.add("Kocsis Balint", "RBV23Q");
+    hallgatok.add("Varga Árpád", "ER34N5");
+    hallgatok.add("Kiss Aladár", "IKR2TR");
 	hallgatok.printDb();
 }
