@@ -13,10 +13,10 @@ class sor_minta /*  deklarációja */
  };
 
  struct sor_minta str_tb[T_E] = {
-                             { '[', 2, { 1, 0, 1, 0} },
-                             { '&', 3, { 1, 1, 1, 0} },
-                             { ']', 4, { 0, 0, 1, 1} }
-                            };
+    { '[', 2, { 1, 0, 1, 0} },
+    { '&', 3, { 1, 1, 1, 0} },
+    { ']', 4, { 0, 0, 1, 1} }
+};
    /* Struktúra tömb definíciója és az elemeinek a kezdőértékei */
 
 void sor_minta::kiir(int kfv)
