@@ -9,7 +9,8 @@ namespace Neptun {
 		std::string neptunkod;
 	public:
 		Hallgato(std::string nev, std::string neptunkod);
-		void print();
+		std::string getNeptunKod();
+		void print(int numTabs);
 	};
 
 }

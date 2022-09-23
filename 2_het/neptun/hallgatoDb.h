@@ -1,5 +1,5 @@
 #pragma once
-#include "hallgato.cpp"
+#include "hallgato.h"
 #include <vector>
 
 namespace Neptun {
