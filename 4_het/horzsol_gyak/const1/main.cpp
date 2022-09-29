@@ -41,8 +41,8 @@ sor_minta& sor_minta::setIsm(int v_im)
  
 int main(void)
  {
-  sor_minta nyzj('[',2,2), es('&',3,3), zzj(']',4,1), alap;     /* Objektumok példányosítása, beállítása */
- //const sor_minta alap;
+  sor_minta nyzj('[',2,2), es('&',3,3), zzj(']',4,1);   //, alap;     /* Objektumok példányosítása, beállítása */
+  const sor_minta alap;
   mind(nyzj,es,zzj,alap.getsK());
   es.setIsm(4).setSor(-1).setKar('&');
   mind(nyzj,es,zzj,alap.getsK());
