@@ -1,4 +1,4 @@
-#include "Decl.hpp"
+#include "1.cpp"
  
 int main(void) {
     tri_race alap, \
@@ -16,3 +16,6 @@ int main(void) {
 
 // h = sum/oRA; p = (sum%oRA)/pRC; mp = (sum%oRA)%pRC;
 // Az oRA értéke 3600 míg a pRC értéke 60.
+
+// 1. feladat:  megírni a .hpp-t
+//              deklarálni mindent, milyen metódusok kellenek, milyen konstansok
