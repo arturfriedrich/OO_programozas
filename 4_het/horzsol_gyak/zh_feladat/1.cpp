@@ -1,5 +1,7 @@
 #include "Decl.hpp"
 
+/* itt fejtjük ki az Decl.hpp-ben definiált függvényeket és eljárásokat, 
+   itt felhasználhatjuk a példányosítésban megadott értékeket */
 tri_race& tri_race::kiir_rajt() {
     cout << "Rajt idő: " << o << ":" << p << ":" << mp << " [o:p:mp]" << endl;
     return *this;
