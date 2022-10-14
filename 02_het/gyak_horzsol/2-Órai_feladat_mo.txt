@@ -1,0 +1,93 @@
+// Megoldás: .hpp
+
+using namespace std;
+
+#define SK 4                           /* Kiírandó sorok száma */
+
+class sor_minta /* Osztály deklarációja */
+ {
+   private:
+    char kar, v_k; /* kiirandó karakter */
+    int ism;  /* soron belüli ismétlődések száma */
+    int sor;  /* sorok száma, amennyiben megjelenjen */
+    int v_m;  /* változtatás mértéke az "ism"-re */
+   public:
+    sor_minta() { kar='A'; ism=1; sor=1, v_m=0; }  /* Alapértelmezett konstruktor */
+    sor_minta(char kr, int im, int sr)          /* Alapérték beállító konstruktor */
+     { kar=kr; ism=im; sor=sr; }
+    void kiir(int i);
+	/*~sor_minta()                                        Destruktor 
+     { cout << "A program hibátlanul lefutott!\n"; } */
+	 char getKar() { return kar; }   
+	 int getIsm() { return ism; }
+   int getSor() { return sor; }
+	 void setIsm(int im);
+   void setSor(int sr);
+   void setKar(char kr);
+ };
+
+/**************/
+// Megoldás: .cpp
+
+#include <iostream>
+#include "Decl.hpp"
+
+void sor_minta::kiir(int i)
+ {
+  for(int j=0; j<ism; j++)                /* Soron belüli kiírás */
+   {
+    if(i<sor) cout << kar;
+    else cout << "-";
+   }
+ }
+
+void sor_minta::setIsm(int im)
+ {
+  do {
+      cout << "\n Kérem az 'ism' változtatásának a mértékét [1-10]: " << im << " +-= ";
+      cin >> v_m;
+     } while((im+v_m)<=0 or (im+v_m)>=11);
+  ism+=v_m;
+ }
+
+void sor_minta::setSor(int sr)
+ {
+  do {
+      cout << "\n Kérem a 'sor' változtatásának a mértékét [1-4]: " << sr << " +-= ";
+      cin >> v_m;
+     } while((sr+v_m)<=0 or (sr+v_m)>=5);
+  sor+=v_m;
+ }
+
+void sor_minta::setKar(char kr)
+ {
+  do {
+      cout << "\n Kérek egy új karaktert: " << kar << " => ";
+      cin >> v_k;
+     } while(v_k==kar);
+   kar=v_k;
+ }
+ 
+ void mind(sor_minta nyzj, sor_minta es, sor_minta zzj)
+ {
+  cout << "\n" << endl;
+  for(int i=0; i<SK; i++)              /* Sorok kiírása */
+   {
+    nyzj.kiir(i); es.kiir(i); zzj.kiir(i);
+    cout << "\n" << endl;
+   }
+ }
+ 
+int main(void)
+ {
+  sor_minta nyzj('[',2,2), es('&',3,3), zzj(']',4,1), alap;     /* Objektumok példányosítása, beállítása */
+  cout << alap.getKar() << alap.getIsm() << alap.getSor() << "\n"\
+       << es.getKar() << es.getIsm() << es.getSor() << "\n" << endl; 
+  mind(nyzj,es,zzj);
+  es.setIsm(es.getIsm());
+  es.setSor(es.getSor());
+  es.setKar(es.getKar()); 
+  mind(nyzj,es,zzj);
+  return 0;
+}
+/****************/
