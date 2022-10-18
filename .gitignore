@@ -28,3 +28,6 @@
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
+
+# macOS Files
+.DS_Store
