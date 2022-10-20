@@ -11,5 +11,3 @@ A félév végén vizsga van. Számítógépes teremben a Programozás tárgyoz 
 - 	Dr. Csapó Ádám Balázs (csapo.adam@sze.hu)
    [GitHub repository](https://github.com/csapoadam/oop-gyak-2022-osz)
 - Horváth Zsolt (horzsol@sze.hu, http://rs1.sze.hu/~horzsol/)
-
-asd
