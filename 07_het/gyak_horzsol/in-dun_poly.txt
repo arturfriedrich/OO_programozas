@@ -412,7 +412,7 @@ int main(void)
 }
 /***************************************************************************************/
 
-inheritance/1_din_poly/3 : + objektumok a heap-en, címekkel!!!
+inheritance/1_din_poly/3 : + objektumok a heap-en, címekkel + const beépülő metódusok
 /********* Decl.hpp ************/
 #pragma once
 #include <iostream>
@@ -435,9 +435,9 @@ class tri_race // szülő osztály deklarációja
      { lic=lc; swim=sw; cycle=cyc; run=rn; depo=dp; ij=t;
       cout << "\nA paraméteres szülő-objektum létrejött: "; }
    int getIj() const { return ij; }
-   void kiir_i1();
-   void kiir_i2();
-   void kiir_i3();
+   void kiir_i1() const;
+   void kiir_i2() const;
+   void kiir_i3() const;
    virtual tri_race& kiir_rajt();
    virtual tri_race& kiir_cel();
 	 tri_race& setSum(int t);
@@ -455,7 +455,7 @@ class in_ch : public tri_race // származtatott gyerek osztály deklarációja
     in_ch(string lc, int sw, int cyc, int rn, int dp, int t, int kt) : \
            tri_race(lc, sw, cyc, rn, dp, t)
      { kat=kt; cout << "\nA paraméteres gyerek-objektum létrejött: "; }
-   void kiir_i4();
+   void kiir_i4() const;
    virtual in_ch& kiir_rajt();
    virtual in_ch& kiir_cel();
    virtual ~in_ch()
@@ -483,16 +483,16 @@ void felsz(tri_race* x_tri);
 /*********** 1.cpp *************/
 #include "Decl.hpp"
 
-void tri_race::kiir_i1()
+void tri_race::kiir_i1() const
  { cout << h << ":" << p << ":" << mp  << " [h:m:s]\n"; }
 
-void tri_race::kiir_i2()
+void tri_race::kiir_i2() const
  { cout << "Licence: " << lic << "\nÚ: " << swim << "\nB: " << cycle << "\nD: " << depo; }
 
-void tri_race::kiir_i3()
+void tri_race::kiir_i3() const
  { cout << "\nF: " << run  << "\nT-: " << ij << "\nCél idő: "; }
 
-void in_ch::kiir_i4()
+void in_ch::kiir_i4() const
  { kiir_i2();
    cout << "\nÚ+B+D: " << swim+cycle+depo;
    kiir_i3(); kiir_i1();
@@ -528,7 +528,7 @@ void mind1(tri_race* x_tri)
    x_tri->kiir_rajt().setSum(x_tri->getIj()).kiir_cel(); }
    
 void felsz(tri_race* x_tri)
- { delete x_tri; cout << x_tri; }
+ { delete x_tri; cout << x_tri; x_tri=0; }
    
 /********* main.cpp ************/
 #include "Decl.hpp"
@@ -542,7 +542,7 @@ int main(void)
   in_ch* D_tri=new in_ch("C_H_1234",1450,4400,2400,130,30,5); cout << "D_tri = " << D_tri;
   in_gr_ch* E_tri=new in_gr_ch("G_R_4321",1500,4450,2350,120,0,4,'F'); cout << "E_tri = " << E_tri;
   mind1(alap); mind1(A_tri); mind1(B_tri); mind1(C_tri); mind1(D_tri); mind1(E_tri);
-  felsz(alap); felsz(A_tri); felsz(B_tri); felsz(C_tri); felsz(D_tri); felsz(E_tri);
+  felsz(E_tri); felsz(D_tri); felsz(C_tri); felsz(B_tri); felsz(A_tri); felsz(alap);
   return 0;
 }
 /***************************************************************************************/
