@@ -22,9 +22,9 @@ class tri_race
    string getLic() const { return lic; }
    void kiir_i1() const;
    void kiir_i2() const;
-   void kiir_i3() const;
-   virtual tri_race& kiir_cel(); // =0; // absztrakt osztály, tisztán virtuális
-	 tri_race& setSum(int t);
+   void kiir_i3() const;                /* innen eltűnk a kiir_rajt(), és eltűnt minden szintről */
+   virtual tri_race& kiir_cel()=0;      // absztrakt osztály, tisztán virtuális
+	 tri_race& setSum(int t);           /* 8====3 */
    virtual ~tri_race()
     { cout << "\nFelszabadítottam a szülő-objektum memóriacímét: "; }
    tri_race(const tri_race&) = delete;

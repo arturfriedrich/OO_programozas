@@ -1,6 +1,6 @@
 #include "Decl.hpp"
 
-void tri_race::kiir_i1() const
+void tri_race::kiir_i1() const		/* ha egy metódus const akkor nem dobhat vissza referenciát */
  { cout << h << ":" << p << ":" << mp  << " [h:m:s]\n"; }
 
 void tri_race::kiir_i2() const
@@ -28,10 +28,11 @@ in_gr_ch& in_gr_ch::kiir_cel()
   
 tri_race& tri_race::setSum(int t)
  { sum=swim+cycle+run+depo-t;
-   h=sum/oRA; p=(sum%oRA)/pRC; mp=(sum%oRA)%pRC;
+   h=sum/oRA; p=(sum%oRA)/pRC; mp=(sum%oRA)%pRC;			/* ezt a funkciót adjuk át egy másik szülőnek */
    return *this; }
 
 void mind1(tri_race* x_tri)
+/* nincsen láncolt hívás */
  { cout << endl;
    in_gr_ch* rp = dynamic_cast<in_gr_ch*>(x_tri);
    if(rp!=nullptr) { cout << "\nUnoka ";  }
@@ -45,8 +46,8 @@ void mind1(tri_race* x_tri)
         cout << "\nSzülő ";
        }
      }
-   cout << "rajt idő: ";
-   x_tri->kiir_i1();
+   cout << "rajt idő: ";			/* az ismétlődő információt csak egyszer írom ki */
+   x_tri->kiir_i1();				/* meghívom a beépülő metódust */
    x_tri->setSum(x_tri->getIj()).kiir_cel();
    
  }
