@@ -1,3 +1,4 @@
+/* azt vizsgálja, hogy melyik öröklődési szinten vagyunk */
 #include "1.cpp"
 
 int main(void)
@@ -12,3 +13,4 @@ int main(void)
   mind1(D_tri);
   mind1(E_tri);
   return 0;
+ }
