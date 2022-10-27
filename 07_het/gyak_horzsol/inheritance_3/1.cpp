@@ -15,19 +15,19 @@ void in_ch::kiir_i4() const
    kiir_i3(); kiir_i1();
    cout << "Kategória: " << kat << endl; }
 
-tri_race& tri_race::kiir_rajt()
+tri_race& tri_race::kiir_rajt()         /* itt és a gyerek kiir között csak egy szó a külöbség, ezt meg lehet oldani jobban is */
  { cout << "\nSzülő rajt idő: "; kiir_i1(); return *this; }
  
 tri_race& tri_race::kiir_cel()
  { kiir_i2(); kiir_i3(); kiir_i1(); return *this; }
  
-in_ch& in_ch::kiir_rajt()
+in_ch& in_ch::kiir_rajt()               /* itt is ugyan az a helyzet */
  { cout << "\nGyerek rajt idő: "; kiir_i1(); return *this; }
  
 in_ch& in_ch::kiir_cel()
  { kiir_i4(); return *this; }
   
-in_gr_ch& in_gr_ch::kiir_rajt()
+in_gr_ch& in_gr_ch::kiir_rajt()         /* itt is ugyan az a helyzet */
  { cout << "\nUnoka rajt idő: "; kiir_i1(); return *this; }
 
 in_gr_ch& in_gr_ch::kiir_cel()
