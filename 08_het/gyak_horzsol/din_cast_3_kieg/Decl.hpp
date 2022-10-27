@@ -33,7 +33,7 @@ class h_m_s  // átszámoló osztály deklarációja
 	  { cout << "\nAz alapértelmezett átszámoló szülő-adatszerkezet létrejött: "; }
     void kiir_i1() const;
     void s_hms(int s) { h=s/oRA; p=(s%oRA)/pRC; mp=(s%oRA)%pRC; }		/* ebben a sorban számolja ki */
-    virtual h_m_s& kiir_cel()=0; // megvalósított metódus lehet csak!
+    virtual h_m_s& kiir_cel()=0; // megvalósított gyerek metódus lehet csak!
     ~h_m_s()   // "virtual" nem kötelező!
      { cout << "\nFelszabadítottam az átszámoló szülő-adatszerkezet memóriacímét: "; }
  };
@@ -52,7 +52,7 @@ class in_ch : public tri_race, public h_m_s
    virtual in_ch& kiir_cel();
    virtual ~in_ch()
     { cout << "\nFelszabadítottam a gyerek-objektum saját adatának a memóriacímét: "; }
-   in_ch(const in_ch&) = delete;
+   in_ch(const in_ch&) = delete;				/* másoló konstruktorok tiltásai */
    in_ch& operator=(const in_ch&) = delete;	
  };
  
@@ -70,5 +70,5 @@ class in_gr_ch : public in_ch
     { cout << "\nFelszabadítottam az unoka-objektum saját adatának a memóriacímét: "; }
  };
 
-void mind1(in_ch* x_tri);
+void mind1(in_ch* x_tri);			/* már gyerek objektumokat ír ki */
 void felsz(tri_race* x_tri);

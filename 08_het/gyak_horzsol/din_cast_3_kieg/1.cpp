@@ -9,12 +9,12 @@ void in_ch::kiir_i2()
    cout << "D: "; s_hms(depo); kiir_i1(); }
 
 void in_ch::kiir_i3()
- { cout << "F: "; s_hms(run); kiir_i1();
+ { cout << "F: "; s_hms(run); kiir_i1();      /* minden egyes idő előtt az átszámoló osztáy átszámolja, majd kiírja */
    cout << "T-: "; s_hms(ij); kiir_i1();
    cout << "Cél idő: "; }
 
 void in_ch::kiir_i4()
- { kiir_i2(); s_hms(swim+cycle+depo);
+ { kiir_i2(); s_hms(swim+cycle+depo);         /* nem túl kultúrált, ha a gyerek a szülő változóit kezelje */
    cout << "Ú+B+D: "; kiir_i1();
    kiir_i3(); s_hms(sum); kiir_i1();
    cout << "Kategória: " << kat << endl; }
@@ -30,7 +30,7 @@ in_gr_ch& in_gr_ch::kiir_cel()
    cout << "Nem: " << nem << endl;
    return *this; }
   
-tri_race& tri_race::setSum(int t)
+tri_race& tri_race::setSum(int t)         /* setterrel, eltűnk belőle az átszámolás */
  { sum=swim+cycle+run+depo-t; return *this; }
 
 void mind1(in_ch* x_tri)

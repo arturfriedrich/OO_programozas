@@ -1,4 +1,4 @@
-#include "Decl.hpp"
+#include "1.cpp"
 
 int main(void)
  {
