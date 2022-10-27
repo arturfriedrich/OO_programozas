@@ -41,25 +41,27 @@ tri_race& tri_race::setSum(int t)
    return *this; }
 
 void mind1(tri_race* x_tri)
- { cout << endl;
-   x_tri->kiir_rajt().setSum(x_tri->getIj()).kiir_cel();
-   in_gr_ch* rp = dynamic_cast<in_gr_ch*>(x_tri);
-   if(rp!=nullptr)
-    { cout << "\nUnoka objektum vagyok: " << rp->getLic() << endl; }
-   else
-     {
-      cout << "\nNem vagyok unoka objektum!" << endl;
-      in_ch* rp = dynamic_cast<in_ch*>(x_tri); 
-      if(rp!=nullptr)
-       { cout << "\nGyerek objektum vagyok: " << rp->getLic() << endl; }
-      else
-      {
-       cout << "\nNem vagyok gyerek objektum!" << endl;
-       tri_race* rp = dynamic_cast<tri_race*>(x_tri);
-       cout << "\nSzülő objektum vagyok: " << rp->getLic() << endl; 
-      }
-     }
- }
+	{ 
+		cout << endl;
+		x_tri->kiir_rajt().setSum(x_tri->getIj()).kiir_cel();
+		/* try-nál utána volt a dynamic-cast, itt előtte van */
+		in_gr_ch* rp = dynamic_cast<in_gr_ch*>(x_tri);					/* itt "&" helyett "*" van */
+		if(rp!=nullptr)				/* ha false jön vissza akkor NULL pointert dob */
+			{ cout << "\nUnoka objektum vagyok: " << rp->getLic() << endl; }
+		else
+			{
+				cout << "\nNem vagyok unoka objektum!" << endl;
+				in_ch* rp = dynamic_cast<in_ch*>(x_tri); 
+				if(rp!=nullptr)
+					{ cout << "\nGyerek objektum vagyok: " << rp->getLic() << endl; }
+				else
+					{
+						cout << "\nNem vagyok gyerek objektum!" << endl;
+						tri_race* rp = dynamic_cast<tri_race*>(x_tri);
+						cout << "\nSzülő objektum vagyok: " << rp->getLic() << endl; 
+					}
+			}
+	}
    
 void felsz(tri_race* x_tri)
  { delete x_tri; cout << x_tri; x_tri=0; }
