@@ -41,29 +41,37 @@ tri_race& tri_race::setSum(int t)
    return *this; }
 
 void mind1(tri_race& x_tri)
- { cout << endl;
-   x_tri.kiir_rajt().setSum(x_tri.getIj()).kiir_cel();
-   try
-   {
-     tri_race& rp = dynamic_cast<tri_race&>(x_tri); // in_ch
-    cout << "\nSzülő objektum vagyok: " << rp.getLic() << endl;
-     /*in_gr_ch& rp = dynamic_cast<in_gr_ch&>(x_tri);
-     cout << "\nUnoka objektum vagyok: " << rp.getLic() << endl;*/
-   }
-  catch(bad_cast)
-   {
-    cout << "\nNem vagyok gyerek objektum!" << endl;
-    /*cout << "\nNem vagyok unoka objektum!" << endl;
-     try
-      {
-       in_ch& rp = dynamic_cast<in_ch&>(x_tri);
-       cout << "Gyerek objektum vagyok: " << rp.getLic() << endl;    
-      }
-     catch(bad_cast)
-      {
-       cout << "Nem vagyok gyerek objektum!" << endl;
-       tri_race& rp = dynamic_cast<tri_race&>(x_tri);
-       cout << "Szülő objektum vagyok: " << rp.getLic() << endl; 
-      }*/
-   }
-  }
+	{ cout << endl;
+	x_tri.kiir_rajt().setSum(x_tri.getIj()).kiir_cel();
+	/* a try catchet mindig a legalsó szinten kezdjük, aztán szintenként haladjunk felfelé */
+	try						/* kivételkezelés, hasonlóan kezelendő mint egy if else */
+		{
+			/* ez a feltétel, ha ez igaz, akkor végrehajtja a kiírást */
+			/* ha ez hamis, akkor a "catch" hajtódik végre */
+			/* tri_race& rp = dynamic_cast</tri_race&/in_ch&>(x_tri);	*/			
+			/* dynamic_cast = ez egy template(sablon) <ezek közé kerül a típusa>, ezek után paraméter 
+			is adhtaó, ez egy egyszerű összehasonlítás, megnézi, hogy a paraméterként adott típus 
+			megegyezik-e a <> kötött adott típussal, ha megegyezik a visszatérési értékbe betöltődik 
+			<ennek az osztálynak> a címe */
+			/* cout << "\nSzülő objektum vagyok: " << rp.getLic() << endl; */
+			/* mindig a legméllyebb szintet vizsgáljuk */
+			in_gr_ch& rp = dynamic_cast<in_gr_ch&>(x_tri);					/* unoka vizsgálattal kezdek */
+			cout << "\nUnoka objektum vagyok: " << rp.getLic() << endl;
+		}
+	catch(bad_cast)			/* kivételkezelés */
+		{
+			/* cout << "\nNem vagyok gyerek objektum!" << endl; */
+			cout << "\nNem vagyok unoka objektum!" << endl;
+			try				/* try catch is egybeágyazható */
+				{
+					in_ch& rp = dynamic_cast<in_ch&>(x_tri);
+					cout << "Gyerek objektum vagyok: " << rp.getLic() << endl;
+				}
+			catch(bad_cast)
+				{
+					cout << "Nem vagyok gyerek objektum!" << endl;
+					tri_race& rp = dynamic_cast<tri_race&>(x_tri);
+					cout << "Szülő objektum vagyok: " << rp.getLic() << endl; 
+				}
+		}
+	}
