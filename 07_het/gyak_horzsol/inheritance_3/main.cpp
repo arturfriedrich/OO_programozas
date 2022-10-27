@@ -9,6 +9,6 @@ int main(void)
   in_ch* D_tri=new in_ch("C_H_1234",1450,4400,2400,130,30,5); cout << "D_tri = " << D_tri;
   in_gr_ch* E_tri=new in_gr_ch("G_R_4321",1500,4450,2350,120,0,4,'F'); cout << "E_tri = " << E_tri;
   mind1(alap); mind1(A_tri); mind1(B_tri); mind1(C_tri); mind1(D_tri); mind1(E_tri);
-  felsz(alap); felsz(A_tri); felsz(B_tri); felsz(C_tri); felsz(D_tri); felsz(E_tri);
+  felsz(E_tri); felsz(D_tri); felsz(C_tri); felsz(B_tri); felsz(A_tri); felsz(alap);
   return 0;
 }

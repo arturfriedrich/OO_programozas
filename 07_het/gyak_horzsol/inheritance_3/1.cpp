@@ -1,15 +1,15 @@
 #include "Decl.hpp"
 
-void tri_race::kiir_i1()
+void tri_race::kiir_i1() const
  { cout << h << ":" << p << ":" << mp  << " [h:m:s]\n"; }
 
-void tri_race::kiir_i2()
+void tri_race::kiir_i2() const
  { cout << "Licence: " << lic << "\nÚ: " << swim << "\nB: " << cycle << "\nD: " << depo; }
 
-void tri_race::kiir_i3()
+void tri_race::kiir_i3() const
  { cout << "\nF: " << run  << "\nT-: " << ij << "\nCél idő: "; }
 
-void in_ch::kiir_i4()
+void in_ch::kiir_i4() const
  { kiir_i2();
    cout << "\nÚ+B+D: " << swim+cycle+depo;
    kiir_i3(); kiir_i1();
@@ -45,4 +45,4 @@ void mind1(tri_race* x_tri)
    x_tri->kiir_rajt().setSum(x_tri->getIj()).kiir_cel(); }
    
 void felsz(tri_race* x_tri)
- { delete x_tri; cout << x_tri; }
+ { delete x_tri; cout << x_tri; x_tri=0; }

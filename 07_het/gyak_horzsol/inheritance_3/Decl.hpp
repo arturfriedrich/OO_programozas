@@ -19,13 +19,13 @@ class tri_race // szülő osztály deklarációja
      { lic=lc; swim=sw; cycle=cyc; run=rn; depo=dp; ij=t;
       cout << "\nA paraméteres szülő-objektum létrejött: "; }
    int getIj() const { return ij; }
-   void kiir_i1();
-   void kiir_i2();
-   void kiir_i3();
+   void kiir_i1() const;
+   void kiir_i2() const;
+   void kiir_i3() const;
    virtual tri_race& kiir_rajt();
    virtual tri_race& kiir_cel();
 	 tri_race& setSum(int t);
-   virtual ~tri_race()
+   virtual ~tri_race()                      /* ha itt kihagyom a virtual-t, akkor a leszármazottanál memóriaszivárgás lép fel */
     { cout << "\nFelszabadítottam a szülő-objektum memóriacímét: "; }
    tri_race(const tri_race&) = delete;
    tri_race& operator=(const tri_race&) = delete;	
@@ -39,7 +39,7 @@ class in_ch : public tri_race // származtatott gyerek osztály deklarációja
     in_ch(string lc, int sw, int cyc, int rn, int dp, int t, int kt) : \
            tri_race(lc, sw, cyc, rn, dp, t)
      { kat=kt; cout << "\nA paraméteres gyerek-objektum létrejött: "; }
-   void kiir_i4();
+   void kiir_i4() const;
    virtual in_ch& kiir_rajt();
    virtual in_ch& kiir_cel();
    virtual ~in_ch()
