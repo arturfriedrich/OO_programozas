@@ -53,7 +53,7 @@ class Running : public Sports {
         }
 };
 
-/* hatodik lépcső */
+/* hetedik lépcső */
 void printNamesOfSports(Sports* sps) {
     if (dynamic_cast<Swimming*>(sps)) cout << "Úszás" << endl;
     if (dynamic_cast<Cycling*>(sps)) cout << "Bicikli" << endl;
