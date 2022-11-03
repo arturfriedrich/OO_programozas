@@ -30,9 +30,9 @@ int main()
 
     // A 3-as jegyert irassa ki a sportagak neveit egymas ala, az argumentum alapjan.
 
-    // printNamesOfSports(sp1);
-    // printNamesOfSports(sp2);
-    // printNamesOfSports(sp3);
+    printNamesOfSports(sp1);
+    printNamesOfSports(sp2);
+    printNamesOfSports(sp3);
     
     // Az elvart kimenet a 3-as jegyert:
 	//
