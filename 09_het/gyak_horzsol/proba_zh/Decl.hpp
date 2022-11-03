@@ -5,9 +5,6 @@ using namespace std;
 class Sports {
     protected:
         const int sZ, eZ, oRA, pRC;
-    public:
-        int tavolsag, ido;
-
 
 };
 
