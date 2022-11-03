@@ -9,7 +9,6 @@ class Sports {
     public:
         Sports(double dt, double tm) : sZ(100), eZ(1000), oRA(3600), pRC(60) {        /* paraméteres szülő objektum */
             distance = dt; time = tm; average = 0.0;
-            cout << "\nAz alapértelmezett szülő-objektum létrejött: ";
         }
         /* harmadik lépcső */
         double getDistance() const { return distance; }
@@ -21,13 +20,20 @@ class Sports {
 };
 
 class Swimming : public Sports {
-
+    public:
+        /* negyedik lépcső - gyerek objektumok létrehozása */
+        Swimming(int dt, int tm) : Sports(dt, tm) { }
 };
 
 class Cycling : public Sports {
-
+    public:
+        /* negyedik lépcső - gyerek objektumok létrehozása */
+        Cycling(int dt, int tm) : Sports(dt, tm) { }
+    
 };
 
 class Running : public Sports {
-
+    public:
+        /* negyedik lépcső - gyerek objektumok létrehozása */
+        Running(int dt, int tm) : Sports(dt, tm) { }
 };
