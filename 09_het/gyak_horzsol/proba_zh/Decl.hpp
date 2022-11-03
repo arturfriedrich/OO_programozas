@@ -56,6 +56,6 @@ class Running : public Sports {
 /* hetedik lépcső */
 void printNamesOfSports(Sports* sps) {
     if (dynamic_cast<Swimming*>(sps)) cout << "Úszás" << endl;
-    if (dynamic_cast<Cycling*>(sps)) cout << "Bicikli" << endl;
-    if (dynamic_cast<Running*>(sps)) cout << "Futás" << endl;
+    else if (dynamic_cast<Cycling*>(sps)) cout << "Bicikli" << endl;
+    else if (dynamic_cast<Running*>(sps)) cout << "Futás" << endl;
 }
