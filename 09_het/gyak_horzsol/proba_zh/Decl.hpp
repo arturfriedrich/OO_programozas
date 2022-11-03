@@ -23,6 +23,11 @@ class Swimming : public Sports {
     public:
         /* negyedik lépcső - gyerek objektumok létrehozása */
         Swimming(int dt, int tm) : Sports(dt, tm) { }
+        /* ötödik lépcső */
+        void computeSaveAndPrintAverage() override {
+            setAverage(getTime() / (getDistance() / sZ));
+            cout << "Az úszás átlaga: " << getAverage() << " s / 100 m" << endl;
+        }        
 };
 
 class Cycling : public Sports {
