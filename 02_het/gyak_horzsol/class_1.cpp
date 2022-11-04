@@ -10,6 +10,7 @@ void sor_minta::kiir(int i)
 	}
 }	
 
+/* itt definiáljuk a sor_minta class metódusait */
 sor_minta& sor_minta::setIsm(int v_im)
 {
 	if ((ism+v_im)>0 and (ism+v_im)<11) ism+=v_im; 
