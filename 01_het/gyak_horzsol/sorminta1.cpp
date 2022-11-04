@@ -2,13 +2,13 @@
 #include <iostream>
 using namespace std;
 
-#define SK 4							/* Kiírandó sorok száma */
+#define SK 4				/* Kiírandó sorok száma */
 
-struct sor_minta 						/* Struktúra deklarációja */
+struct sor_minta 			/* Struktúra deklarációja */
 {
-	char kar; /* kiirandó karakter */
-	int ism;  /* soron belüli ismétlődések száma */
-	int sor;  /* sorok száma, amennyiben megjelenjen */
+	char kar; 				/* kiirandó karakter */
+	int ism;  				/* soron belüli ismétlődések száma */
+	int sor;  				/* sorok száma, amennyiben megjelenjen */
 };
 
 int main(void)
