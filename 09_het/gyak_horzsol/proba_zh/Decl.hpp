@@ -59,3 +59,5 @@ void printNamesOfSports(Sports* sps) {
     else if (dynamic_cast<Cycling*>(sps)) cout << "Bicikli" << endl;
     else if (dynamic_cast<Running*>(sps)) cout << "Futás" << endl;
 }
+
+/* teszt */
