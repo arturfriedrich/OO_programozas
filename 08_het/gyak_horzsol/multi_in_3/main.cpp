@@ -1,96 +1,14 @@
-#pragma once
-#include <iostream>
+#include "1.cpp"
 
-using namespace std;
-
-class tri_race
+int main(void)
 {
-	int sum;
-	protected:
-   		class memb  /* tagok osztály */
-		{
-		/* privát védettség */
-			string lic;
-			int swim, cycle, run, depo, ij;
-			public:  // protected?
-			string getLic() const { return lic; }
-			int getSwim() const { return swim; }
-			int getCycle() const { return cycle; }
-			int getRun() const { return run; }
-			int getDepo() const { return depo; }
-			int getIj() const { return ij; }
-			void setLic(string lc) { lic=lc; }
-			void setSwim(int sw) { swim=sw; }
-			void setCycle(int cyc) { cycle=cyc; }
-			void setRun(int rn) { run=rn; }
-			void setDepo(int dp) { depo=dp; }
-			void setIj(int t) { ij=t; }
-			memb() { cout << "\nAz alapértelmezett szülő-tag adatszerkezet létrejött: "; }
-			~memb() { cout << "\nFelszabadítottam a szülő-tag adatszerkezet memóriacímét: "; }
-		};
-		memb tagok;
-		tri_race() : sum(0)
-			{ tagok.setLic("--------"); tagok.setSwim(0); tagok.setCycle(0); tagok.setRun(0);
-			tagok.setDepo(0); tagok.setIj(0);
-			cout << "\nAz alapértelmezett szülő-adatszerkezet létrejött: ";}  
-		tri_race(string lc, int sw, int cyc, int rn, int dp, int t) : sum(0)
-			{ tagok.setLic(lc); tagok.setSwim(sw); tagok.setCycle(cyc); tagok.setRun(rn);
-			tagok.setDepo(dp); tagok.setIj(t);
-			cout << "\nA paraméteres szülő-adatszerkezet létrejött: "; }
-		int getSum() const { return sum; }
-		public:
-		/* set szmmot nem tehetem protected szintre, külső szintről elérhetőek */
-		tri_race& setSum();
-		virtual tri_race& kiir_cel()=0;
-		virtual ~tri_race()
-			{ cout << "\nFelszabadítottam a szülő-adatszerkezet memóriacímét: "; }
-};
-
-class h_m_s
- {
-   const int oRA, pRC;
-   int h, p, mp;
-   protected:
-    h_m_s() : oRA(3600), pRC(60), h(0), p(0), mp(0)
-	   { cout << "\nAz alapértelmezett átszámoló szülő-adatszerkezet létrejött: "; }
-    void s_hms(int s) { h=s/oRA; p=(s%oRA)/pRC; mp=(s%oRA)%pRC; }
-  public:
-    void kiir_i1() const;
-    virtual h_m_s& kiir_cel()=0;
-    ~h_m_s()
-     { cout << "\nFelszabadítottam az átszámoló szülő-adatszerkezet memóriacímét: "; }
- };
-	
-class in_ch : public tri_race, public h_m_s
-/* hobb lenne, ha a kat is getteren lenne elérhető */
- {
-   int kat;
-   protected:
-    void kiir_i4();
-   public:
-    in_ch() : tri_race() { kat=0; cout << "\nAz alapértelmezett gyerek-objektum létrejött: "; }
-    in_ch(string lc, int sw, int cyc, int rn, int dp, int t, int kt) : \
-           tri_race(lc, sw, cyc, rn, dp, t)
-     { kat=kt; cout << "\nA paraméteres gyerek-objektum létrejött: "; }
-   virtual in_ch& kiir_cel();
-   virtual ~in_ch()
-    { cout << "\nFelszabadítottam a gyerek-objektum saját adatának a memóriacímét: "; }
-   in_ch(const in_ch&) = delete;
-   in_ch& operator=(const in_ch&) = delete;	
- };
- 
-class in_gr_ch : public in_ch
- {
-   char nem;
-   public:
-    in_gr_ch() : in_ch(), nem('N') {  }
-    in_gr_ch(string lc, int sw, int cyc, int rn, int dp, int t, int kt, char nm) : \
-           in_ch(lc, sw, cyc, rn, dp, t, kt), nem(nm)
-     { cout << "\nA paraméteres unoka-objektum létrejött: "; }
-   virtual in_gr_ch& kiir_cel();
-   virtual ~in_gr_ch()
-    { cout << "\nFelszabadítottam az unoka-objektum saját adatának a memóriacímét: "; }
- };
-
-void mind1(in_ch* x_tri);
-void felsz(tri_race* x_tri);
+	in_ch* alap=new in_ch; cout << "alap = " << alap << endl;
+	in_ch* A_tri=new in_ch("M_V_1357",1200,4200,2300,123,60,6); cout << "A_tri = " << A_tri << endl;
+	in_ch* B_tri=new in_ch("V_G_2468",1300,4300,2400,125,0,6); cout << "B_tri = " << B_tri << endl;
+	in_ch* C_tri=new in_ch("B_G_9048",1400,4400,2400,130,90,6); cout << "C_tri = " << C_tri << endl;
+	in_ch* D_tri=new in_ch("C_H_1234",1450,4400,2400,130,30,5); cout << "D_tri = " << D_tri << endl;
+	in_ch* E_tri=new in_gr_ch("G_R_4321",1500,4450,2350,120,0,4,'F'); cout << "E_tri = " << E_tri << endl;
+	mind1(alap); mind1(A_tri); mind1(B_tri); mind1(C_tri); mind1(D_tri); mind1(E_tri);
+	felsz(E_tri); felsz(D_tri); felsz(C_tri); felsz(B_tri); felsz(A_tri); felsz(alap);
+	return 0;
+}
