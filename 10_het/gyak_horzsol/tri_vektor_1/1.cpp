@@ -17,10 +17,10 @@ void in_ch::kiir_i4()
    for(it=sps.begin(), j_it=jelek.begin(); it!=sps.end(); it++, j_it++)
     {
      hpmp.clear(); s_hms(*it);
-     cout << *j_it << " "; 
+     cout << *j_it << " ";
      kiir_i1();
     }
-   cout << "Kategória: " << kat << endl;
+   cout << "Kategória: " << getKat() << endl;
  }
  
 in_ch& in_ch::kiir_cel()
@@ -28,9 +28,9 @@ in_ch& in_ch::kiir_cel()
 
 in_gr_ch& in_gr_ch::kiir_cel()
  { kiir_i4();
-   cout << "Nem: " << nem << endl;
+   cout << "Nem: " << getNem() << endl;
    return *this; }
-  
+ 
 tri_race& tri_race::setSum()
  { sum=tagok.getSwim()+tagok.getCycle()+tagok.getRun()+tagok.getDepo()-tagok.getIj();
    return *this; }
@@ -42,7 +42,7 @@ void mind1(vector<in_ch*> x_tri)
    if(rp!=nullptr) { cout << "\nUnoka ";  }
    else
      {
-      in_ch* rp=dynamic_cast<in_ch*>(it); 
+      in_ch* rp=dynamic_cast<in_ch*>(it);
       if(rp!=nullptr) { cout << "\nGyerek "; }
       else
        {
@@ -52,11 +52,11 @@ void mind1(vector<in_ch*> x_tri)
      }
    cout << "rajt idő: ";
    it->kiir_i1();
-   it->setSum().kiir_cel(); } 
+   it->setSum().kiir_cel(); }
  }
    
 void felsz(vector<in_ch*> x_tri)
  { for(vector<in_ch*>::reverse_iterator it=x_tri.rbegin();
    it != x_tri.rend(); it++)
-    { delete *it; cout << *it << endl; *it=0; } 
+    { delete *it; cout << *it << endl; *it=0; }
  }
