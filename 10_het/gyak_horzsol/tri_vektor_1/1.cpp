@@ -69,7 +69,9 @@ void mind1(vector<in_ch*> x_tri)
    
    /* ez nem egy tagfüggvény */
 void felsz(vector<in_ch*> x_tri)
- { for(vector<in_ch*>::reverse_iterator it=x_tri.rbegin();
+/* kell az r betű, mivel akkor a fordító azt hinné, hogy az elejétől szeretnénk felhasználni,
+   használhatok akár auto szót is, mivel a fordító tudni fogja a típusát */
+ { for(/* vector<in_ch*>::reverse_iterator */ auto it=x_tri.rbegin();
    it != x_tri.rend(); it++)
    /* a delete utasítás hívogatja az osztályok destruktorát */
     { delete *it; cout << *it << endl; *it=0; }
