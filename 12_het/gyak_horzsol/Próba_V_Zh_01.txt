@@ -1,0 +1,108 @@
+// OOP Próba vizsgaZh
+
+#include "Decl.hpp"
+
+int main()
+{
+    // Keszitse el a "Sports", "Swimming(distance,time)", "Cycling(distance,time)", "Running(distance,time)"
+    // osztalyokat ugy, hogy az alabbi kod forduljon.
+    // Az argumentum-listakban a tavolsagok meterben, az idok masodpercben vannak megadva.
+
+    // A képletekben ne literalokat (konkret valtoszamokat, mint pl.: 100, vagy 3600), hanem konstans tagvaltozokat hasznaljon!
+    // Az atlagok kiszamitasahoz szukseges kepletek, literalokkal:
+    //  - uszasnal (mp / meter) kiszamitasa: time / (distance / 100)
+    //  - bicajnal (km / ora) kiszamitasa: (distance / 1000) / (time / 3600)
+    //  - futasnal (perc / km) kiszamitasa: (time / 60) / (distance / 1000)
+
+    Sports* sp1 = new Swimming(1500,1441);
+    Sports* sp2 = new Cycling(40000,4451);
+    Sports* sp3 = new Running(10000, 2401);
+
+    // a computeSaveAndPrintAverage kiszamitja az atlagot, eltarolja egy tagvaltozoban majd kiirja a konzolra
+	
+    sp1->computeSaveAndPrintAverage();
+    sp2->computeSaveAndPrintAverage();
+    sp3->computeSaveAndPrintAverage();
+
+    // Az elvart kimenet a 2-es jegyert:
+    //
+    // Az uszas atlaga: 96.0667 s / 100 m
+    // A kerekparozas atlaga: 32.3523 km / h
+    // A futas atlaga: 4.0017 min / km
+
+    // A 3-as jegyért irassa ki a sportagak neveit egymas ala, az argumentum alapjan.
+
+    printNamesOfSports(sp1);
+    printNamesOfSports(sp2);
+    printNamesOfSports(sp3);
+    
+    // Az elvart kimenet a 3-as jegyert:
+	//
+    // Uszas
+    // Kerekpar
+    // Futas
+
+    delete sp1;
+    delete sp2;
+    delete sp3;
+
+    return 0;
+}
+
+/********* Decl.hpp ************/
+#include <iostream>
+
+using namespace std;
+
+class Sports
+{
+ double distance, time, average;
+protected:
+ const int sZ, eZ, oRA, pRC;
+public:
+ Sports(double dt, double tm) : sZ(100), eZ(1000), oRA(3600), pRC(60)
+  {distance = dt; time = tm; average = 0.0; }
+ double getDistance() const { return distance; }
+ double getTime() const { return time; }
+ double getAverage() const { return average; }
+ void setAverage(double avg) { average = avg; }
+ virtual void computeSaveAndPrintAverage() {};
+ virtual ~Sports() {}
+};
+
+class Swimming : public Sports
+{
+ public:
+ Swimming(double dt, double tm) : Sports(dt, tm) { }
+ void computeSaveAndPrintAverage() override
+  { setAverage(getTime() / (getDistance() / sZ));
+    cout << "Az uszas atlaga: " << getAverage() << " s / 100 m" << endl; }
+};
+
+class Cycling : public Sports
+{
+ public:
+ Cycling(double dt, double tm) : Sports(dt, tm) { }
+ void computeSaveAndPrintAverage() override
+  { setAverage((getDistance() / eZ) / (getTime() / oRA));
+    cout << "A kerekparozas atlaga: " << getAverage() << " km / h" << endl; }
+};
+
+class Running : public Sports
+{
+ public:
+ Running(double dt, double tm) : Sports(dt, tm) { }
+ void computeSaveAndPrintAverage() override
+  { setAverage((getTime() / pRC) / (getDistance() / eZ));
+    cout << "A futas atlaga: " << getAverage() << " min / km" << endl; }
+};
+
+void printNamesOfSports(Sports* sps)
+{
+ cout << endl; 
+ if(dynamic_cast<Swimming*>(sps)) cout << "Uszas";
+ else if(dynamic_cast<Cycling*>(sps)) cout << "Kerekpar";
+ else if(dynamic_cast<Running*>(sps)) cout << "Futas";
+}
+
+/***********************************************************************************/
