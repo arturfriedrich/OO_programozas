@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>           /* a vektorok használatához szükséges */ 
 
 using namespace std;
 
@@ -52,6 +53,17 @@ class Running : public Sports {
             cout << "Az úszás átlaga: " << getAverage() << " perc / km" << endl;
         }
 };
+
+void printAverages(vector<Sports*>& sps) {
+    int cnt = 0;
+    cout << endl;
+    for (auto sp : sps) {           /* végig iterál a sportokon */
+        if (cnt > 0) cout << " - " << sp->getAverage();         /* ha az adott sport 0 felett van, tehát nem ez az első futása, akkor kiírja */
+        else cout << sp->getAverage();
+        cnt++;
+    }
+    cout << endl;
+}
 
 /* hetedik lépcső */
 void printNamesOfSports(Sports* sps) {
