@@ -61,11 +61,11 @@ void felsz(vector<in_ch*> x_tri)
     { delete *it; cout << *it << endl; *it=0; } 
  }
 
-/*void frnd::olvas(in_ch* x_tri)
+void frnd::olvas(in_ch* x_tri)
  { 
     cout << "\nLicence: " << x_tri->tagok.lic << "\nKategória: " <<  x_tri->getKat() << "\n";
-    //cout << "Cél idő: " << x_tri->sum << "\n";
-    //x_tri->tagok.lic="X_Y_0000"; x_tri->setKat(3); x_tri->sum=9000;
-    //cout << "\nLicence: " << x_tri->tagok.lic << "\nKategória: " << x_tri->getKat() << "\n";
-    //cout << "Cél idő: " << x_tri->sum << "\n";
- }*/
+    cout << "Cél idő: " << x_tri->sum << "\n";
+    x_tri->tagok.lic="X_Y_0000"; x_tri->setKat(3); x_tri->sum=9000;
+    cout << "\nLicence: " << x_tri->tagok.lic << "\nKategória: " << x_tri->getKat() << "\n";
+    cout << "Cél idő: " << x_tri->sum << "\n";
+ }

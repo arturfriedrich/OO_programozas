@@ -10,6 +10,7 @@ int main(void)
   in_ch* D_tri=new in_ch("C_H_1234",1450,4400,2400,130,30,5); objs.push_back(D_tri); cout << "D_tri = " << D_tri << endl;
   in_ch* E_tri=new in_gr_ch("G_R_4321",1500,4450,2350,120,0,4,'F'); objs.push_back(E_tri); cout << "E_tri = " << E_tri << endl;
   mind1(objs);
+  /* az olvas metódust csak objektum hívással tudjuk futtatni */
   frnd f;
   f.olvas(A_tri);
   felsz(objs);

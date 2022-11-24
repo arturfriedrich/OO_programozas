@@ -5,13 +5,15 @@
 
 using namespace std;
 
-//class in_ch; // forward deklaráció, de '*' vagy '&'!
+/* itt soruljuk fel azokat az osztályokat, melyek körkörös hívásban vesznek részt
+ezek az ozstályok csak pointerekkel és mutatókkal tudnak kommunikálni */
+class in_ch; // forward deklaráció, de '*' vagy '&'!
 
 class frnd  // barát osztály
  {
   public:
    frnd() { }
-   void olvas(in_ch* x_tri);
+   void olvas(in_ch* x_tri);            /* itt olvassa ki az adatokat */
    ~frnd()
     { cout << "\nFelszabadítottam a barát adatszerkezetének a memóriacímét: "; }
  };
@@ -57,8 +59,8 @@ class tri_race
    virtual tri_race& kiir_cel()=0;
    virtual ~tri_race()
     { cout << "\nFelszabadítottam a szülő-adatszerkezet memóriacímét: "; }
-   //friend class frnd;
-   //friend void frnd::olvas(in_ch*);
+   friend class frnd;
+   friend void frnd::olvas(in_ch*);
 	};
 
 class h_m_s
@@ -99,8 +101,9 @@ class in_ch : public tri_race, public h_m_s
     { cout << "\nFelszabadítottam a gyerek-objektum saját adatának a memóriacímét: "; }
    in_ch(const in_ch&) = delete;
    in_ch& operator=(const in_ch&) = delete;
+   /* a barát osztály mindenhez hozzáfér, a privát változókhoz is */
    friend class frnd;
-   //friend void frnd::olvas(in_ch*);
+   friend void frnd::olvas(in_ch*);     /* itt hívja meg a barát osztály metódusát */
  };
  
 class in_gr_ch : public in_ch
