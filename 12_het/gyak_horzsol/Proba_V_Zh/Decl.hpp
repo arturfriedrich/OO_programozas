@@ -66,8 +66,12 @@ void printAverages(vector<Sports*>& sps) {
 }
 
 /* hetedik lépcső */
-void printNamesOfSports(Sports* sps) {
-    if (dynamic_cast<Swimming*>(sps)) cout << "Úszás" << endl;
-    else if (dynamic_cast<Cycling*>(sps)) cout << "Bicikli" << endl;
-    else if (dynamic_cast<Running*>(sps)) cout << "Futás" << endl;
+void printNamesOfSports(vector<Sports*>& sps) {
+    cout << endl;
+    for (auto sp : sps) {
+        if (dynamic_cast<Swimming*>(sp)) cout << "Úszás" << endl;
+        else if (dynamic_cast<Cycling*>(sp)) cout << "Bicikli" << endl;
+        else if (dynamic_cast<Running*>(sp)) cout << "Futás" << endl;
+        cout << endl;
+    }
 }
