@@ -12,7 +12,9 @@ int main(void)
   base->mind1();
   delete base; base->b_mem(base,1); // Trükk_2!
 
+  // a main nem tud péládnyosítani, mivel a gyerek osztály védett
   //in_ch A_Tri("V_G_2468",1300,4300,2400,125,0,6);
+  // minden protected
   //in_gr_ch gr_alap;
   //in_gr_ch E_tri("G_R_4321",1500,4450,2350,120,0,4,'F');
   

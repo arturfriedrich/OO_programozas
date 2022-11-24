@@ -41,7 +41,7 @@ tri_race& tri_race::setSum()
  { sum=tagok.getSwim()+tagok.getCycle()+tagok.getRun()+tagok.getDepo()-tagok.getIj();
    return *this; }
 
-void in_ch::mind1()
+void in_ch::mind1()     // megnézi, hogy melyik hívás micsoda
  { cout << endl;
    for(auto it : objs) {
    in_gr_ch* rp=dynamic_cast<in_gr_ch*>(it);
@@ -56,7 +56,7 @@ void in_ch::mind1()
    it->kiir_i1();
    it->setSum().kiir_cel(); } }
 
-in_ch::~in_ch()
+in_ch::~in_ch()   // a gyerek destruktura ide került, ugyanaz a tartalma mint a felsz()-nek
  { 
   for(vector<in_ch*>::reverse_iterator it=objs.rbegin();
    it!=objs.rend(); it++)

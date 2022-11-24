@@ -49,6 +49,7 @@ class tri_race
 
 class h_m_s
  {
+  /* nincsen publikus rész */
    const int oRA, pRC;
    protected:
     vector<int> hpmp={0,0,0};
@@ -67,7 +68,7 @@ class h_m_s
     virtual h_m_s& kiir_cel() { }
  };
 	
-class in_ch : protected tri_race, protected h_m_s
+class in_ch : protected tri_race, protected h_m_s   /* maximális védelem */
  {
     int kat;
     int getKat() const { return kat; }
@@ -82,18 +83,20 @@ class in_ch : protected tri_race, protected h_m_s
     void fuz(in_ch*);
     in_ch& kiir_cel() override;
    public:
+   /* a gyerek default konstruktorát publikusan kell tartani */
     in_ch() : tri_race() { setKat(0); cout << "\nAz alapértelmezett gyerek-objektum létrejött"; }
+    // innen tudja a forfító, hogy milyen objektumot kell példányosítania
     void ch_objs();
     void ch_objs(string lc, int sw, int cyc, int rn, int dp, int t, int kt);
-    void ch_objs(string lc, int sw, int cyc, int rn, int dp, int t, int kt, char nm);
-    void mind1();
+    void ch_objs(string lc, int sw, int cyc, int rn, int dp, int t, int kt, char nm);   // a szülő hozzá akar férni a gyerek tagváltozójához, ezért kell barátkoznia
+    void mind1();   // egy metüdus lett, ez publikus, mert a main-ből hívom meg, de a mind1 hívja azt a részt, ami eldönti, hogy gyerek v unoka
     void b_mem(in_ch*,bool);
-    virtual ~in_ch();
-    in_ch(const in_ch&) = delete;
+    virtual ~in_ch();   // itt van a destruktor, de nem itt valósítjuk meg -> 1.cpp
+    in_ch(const in_ch&) = delete;       // másoló konstruktorok tiltása
     in_ch& operator=(const in_ch&) = delete;	
  };
  
-class in_gr_ch : protected in_ch  // public!!! mert cast-olás hibás lesz!
+class in_gr_ch : public in_ch  // public!!! mert cast-olás hibás lesz!   ---- ha protected-ként örököltetetem, akkor a fordító azt fogja hinni, hogy ez gyerek
  {
     char nem;
     char getNem() const { return nem; }
@@ -106,5 +109,5 @@ class in_gr_ch : protected in_ch  // public!!! mert cast-olás hibás lesz!
    in_gr_ch& kiir_cel() override;
    virtual ~in_gr_ch()
     { cout << "\nFelszabadítottam az unoka-objektum saját adatának a memóriacímét."; }
-   friend void in_ch::ch_objs(string, int, int, int, int, int, int, char);
+   friend void in_ch::ch_objs(string, int, int, int, int, int, int, char);    // a gyerek tud pélányosítani unoka objetumot is
  };
