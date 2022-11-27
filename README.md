@@ -1,13 +1,14 @@
 # OO programozás GKNB_INTM085
-Ez a repo a Széchenyi István Egyetem OO programozás (GKNB_INTM085) tárgyának anyagát gyűjti össze.
+Ez a repository a Széchenyi István Egyetem OO programozás (GKNB_INTM085) tárgy előadásának és gyakorlatainak anyagait gyűjti össze.
+A programkódokat nem én állítottam össze, csak kommentelést és pár apróbb változtatást eszközöltem rajtuk. Ilyen például, hogy Unix alapú rendszerekben a main.cpp fájlokba az 1.cpp-t kell importálni, míg Windows-on a Decl.hpp-t. 
 
-### Fájlstruktúra
-A félév anyaga hetekre van bontva (n_het/), minden hét tartalmazza az azon a héten aktuális elméleti óra anyagát, valamint Horváth Zsolt és Csapó Ádám gyakorlati óráinak anyagát.
+#### Fájlstruktúra
+A félév előadásainak fóliái az _elmelet mappában találhatóak, míg a gyakorlatok anyagai hetekre bontva (n_het/) tartalmazza Horváth Zsolt illetve Dr. Csapó Ádám programkódjait. A gyakorlatok_2021_osz mappa pedig a 2021/2022-es tanév őszi kódjait tartalmazza, ezeket Dr. Csapó Ádám készítette.
 
-## Számonkérés
-A félév végén vizsga van. Számítógépes teremben a Programozás tárgyoz hasonló környezetben. A programnak passolni kell a teszteket és az alapján szerezhető meg az érdemjegy.
+#### Számonkérés
+A félév végén vizsga van. Számítógépes teremben a Programozás tárgyoz hasonló környezetben. Az érdemjegyekhez adott szinteket kell elérni.
 
-### Oktató:
+# Oktatók:
 - 	Dr. Csapó Ádám Balázs (csapo.adam@sze.hu)
    [GitHub repository](https://github.com/csapoadam/oop-gyak-2022-osz)
 - Horváth Zsolt (horzsol@sze.hu, http://rs1.sze.hu/~horzsol/)
