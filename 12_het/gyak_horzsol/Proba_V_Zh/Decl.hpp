@@ -1,9 +1,10 @@
 #include <iostream>
-#include <vector>           /* a vektorok használatához szükséges */ 
+#include <vector>           				/* a vektorok használatához szükséges */ 
 
 using namespace std;
 
-class Sports {
+class Sports 
+{
     double distance, time, average;         /* privát tagváltozók */
     protected:
         const int sZ, eZ, oRA, pRC;
