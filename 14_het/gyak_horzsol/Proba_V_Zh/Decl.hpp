@@ -17,6 +17,15 @@ public:
  void setAverage(double avg) { average = avg; }
  virtual void computeSaveAndPrintAverage() {};
  virtual ~Sports() {}
+ // operátor felültöltés
+ Sports& operator+=(Sports& other)          // metódusként van megvalósítva
+      {  distance=distance+other.getDistance();     // nem tudok behivatkozni a +otherrel, mindegyik tagra külön kell megadni, ahány tagváltozó van
+        time=time+other.getTime();
+        return *this; }     // a visszatérési érték is referencia
+ void printTotal()
+      { cout << "\nA teljes tav: " << getDistance()/eZ << " [km]\n"\
+             << "A cel ido: " << (int)getTime()/oRA << ":" << (int)getTime()%oRA/pRC\
+             << ":" << (int)getTime()%oRA%pRC << " [h:m:s]" << endl; }
 };
 
 class Swimming : public Sports
