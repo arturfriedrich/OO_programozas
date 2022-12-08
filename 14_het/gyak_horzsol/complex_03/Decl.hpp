@@ -79,6 +79,7 @@ class in_ch : protected tri_race, protected h_m_s
     void kiir_i4();	
     void fuz(in_ch*);
     in_ch& kiir_cel() override;
+    // ezek protected-ben vannak, hogy még véletlenül se tudják elérni az osztályhierarchián kívül állók
     in_ch* operator+(in_ch* csp);           // a + operátort terheli túl
     in_ch& operator+=(in_ch* csp);          // a += operátort terheli túl
     in_ch& operator=(const in_ch& felir);   // a = operátort terheli túl
