@@ -12,7 +12,7 @@ void in_ch::ch_objs(string lc, int sw, int cyc, int rn, int dp, int t, int kt, c
 void in_ch::fuz(in_ch* x_tri)
  { objs.push_back(x_tri); cout << ", a címe: " << x_tri << endl; }
 
-void in_ch::kiir_i4()
+void in_ch::kiir_i4()           // szótárkonténer
  { 
    const int &tgS=tagok.getSwim(), &tgC=tagok.getCycle(), &tgD=tagok.getDepo(),\
              &tgR=tagok.getRun(),  &tgI=tagok.getIj();
@@ -58,7 +58,7 @@ void in_ch::mind1()
    else
      { in_ch* rp=dynamic_cast<in_ch*>(it); 
        if(rp!=nullptr) { cout << "\nGyerek "; } }
-   if(it->getKat()<0) cout << "csapat ";
+   if(it->getKat()<0) cout << "csapat ";            // ha a kategória negatív, akkor írja ki, hogy csapat
    cout << "objektum;";
    it->setSum().kiir_cel(); } }
 
@@ -69,7 +69,7 @@ in_ch::~in_ch()
    it!=objs.rend(); it++)
     {
       if((*it)->getKat()>=0) info=": ";
-      else info=" csapat: ";
+      else info=" csapat: ";            // amikor csapatcímet szabadít fel, akkor kiírom, hogy csapat
       delete *it; cout << ", amely" << info << *it << endl; *it=0; }
   cout << "\nFelszabadítottam a gyerek-objektum saját adatának a memóriacímét. "; }
 
@@ -79,8 +79,8 @@ void in_ch::b_mem(in_ch* b, bool ev)
    
 in_ch* in_ch::operator+(in_ch* m_v)
  {
-  in_ch* csap=new in_ch; cout << ", a csapat címe: " << csap;
-  csap->tagok.setLic((tagok.getLic() + " & ") + m_v->tagok.getLic());
+  in_ch* csap=new in_ch; cout << ", a csapat címe: " << csap;           // dinamikus memóriában hozzuk létre a csapatot
+  csap->tagok.setLic((tagok.getLic() + " & ") + m_v->tagok.getLic());   // összefűzzük a licenszeket + operátorral
   csap->tagok.setSwim(tagok.getSwim() + m_v->tagok.getSwim());
   csap->tagok.setCycle(tagok.getCycle() + m_v->tagok.getCycle());
   csap->tagok.setDepo(tagok.getDepo() + m_v->tagok.getDepo());
@@ -89,32 +89,32 @@ in_ch* in_ch::operator+(in_ch* m_v)
   csap->setKat(-2);
   return csap; }
 
-/*in_ch& in_ch::operator=(const in_ch& cs)
+in_ch& in_ch::operator=(const in_ch& cs)
 {
-  cout << "\n\n\t\t this= " << this << "  cs= " << &cs << endl;
-  tagok.setLic(cs.tagok.getLic());
-  tagok.setSwim(cs.tagok.getSwim());
+  cout << "\n\n\t\t this= " << this << "  cs= " << &cs << endl;     // kiírjuk a this címét pointerként, utána a csapat 
+  tagok.setLic(cs.tagok.getLic());          // ez a setter a this-re vonatkozik, a getter pedig az objektum cs-re
+  tagok.setSwim(cs.tagok.getSwim());        // a this feltöltésre került a setterekkel a cs adataival
   tagok.setCycle(cs.tagok.getCycle());
   tagok.setDepo(cs.tagok.getDepo());
   tagok.setRun(cs.tagok.getRun());
   tagok.setIj(cs.tagok.getIj());
   setKat(-3);
-  return *this; }*/
+  return *this; }
 
-/*in_ch& in_ch::operator+=(in_ch* m_v)
+in_ch& in_ch::operator+=(in_ch* m_v)        // bejön egy ember pluszban, ezt hozzá kell adnom a csapat eddigi tagjaihoz
  {
   cout << endl;
   //in_ch* csapp=new in_ch; cout << ", amely csapat+= dinamikus címe: " << csapp << endl;
   //delete csapp; cout << " amely csapat+= dinamikus címe: " << csapp << endl; // heap megoldás
-  in_ch* csapp = *this + m_v; // stack megoldás
-  *this = *csapp;
+  in_ch* csapp = *this + m_v; // stack megoldás     // pointer helyett referenvciával, a visszatérési érték pedig egy átmeneti tárolót határoz meg
+  *this = *csapp;           // az assignment és copy konstruktor az = felüldefiniálása, ha le van tiltva akkor nem tud működni
   //delete csapp; cout << ", amely csapat+= címe: " << csapp;
-  return *this; }*/
+  return *this; }
 
-void in_ch::ossz_csap() 
+void in_ch::ossz_csap()             // metódus
  {
-  in_ch* csapat = *objs[1] + objs[2];
+  in_ch* csapat = *objs[1] + objs[2];       // az első a indirekt, a második direkt
   //in_ch* csapat = objs[1]->operator+(objs[2]);
   objs.push_back(csapat);
-  //*csapat += objs[3];
+  *csapat += objs[3];
  }

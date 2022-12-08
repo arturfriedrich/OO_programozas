@@ -80,8 +80,8 @@ class in_ch : protected tri_race, protected h_m_s
     void fuz(in_ch*);
     in_ch& kiir_cel() override;
     in_ch* operator+(in_ch* csp);           // a + operátort terheli túl
-    //in_ch& operator+=(in_ch* csp);
-    //in_ch& operator=(const in_ch& felir);
+    in_ch& operator+=(in_ch* csp);          // a += operátort terheli túl
+    in_ch& operator=(const in_ch& felir);   // a = operátort terheli túl
    public:
     in_ch() : tri_race() { setKat(0); cout << "\nAz alapértelmezett gyerek-objektum létrejött"; }
     void ch_objs();
@@ -91,8 +91,8 @@ class in_ch : protected tri_race, protected h_m_s
     void b_mem(in_ch*,bool);
     virtual ~in_ch();
     in_ch(const in_ch&) = delete;
-    in_ch& operator=(const in_ch&) = delete;
-	  void ossz_csap();
+    //in_ch& operator=(const in_ch&) = delete;        // itt tiltjuk le az assignment és copy konstruktorokat
+    void ossz_csap();
  };
  
 class in_gr_ch : public in_ch
