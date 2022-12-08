@@ -104,11 +104,11 @@ in_ch& in_ch::operator=(const in_ch& cs)
 in_ch& in_ch::operator+=(in_ch* m_v)        // bejön egy ember pluszban, ezt hozzá kell adnom a csapat eddigi tagjaihoz
  {
   cout << endl;
-  //in_ch* csapp=new in_ch; cout << ", amely csapat+= dinamikus címe: " << csapp << endl;
-  //delete csapp; cout << " amely csapat+= dinamikus címe: " << csapp << endl; // heap megoldás
-  in_ch* csapp = *this + m_v; // stack megoldás     // pointer helyett referenvciával, a visszatérési érték pedig egy átmeneti tárolót határoz meg
+  in_ch* csapp=new in_ch; cout << ", amely csapat+= dinamikus címe: " << csapp << endl;         // a dinamikus memóriában hozzuk létre a csapp nevű pointert
+  delete csapp; cout << " amely csapat+= dinamikus címe: " << csapp << endl; // heap megoldás   // felszabadítjuk, de a pointer továbbra is mutat erre a memória területre
+  csapp = *this + m_v; // stack megoldás     // pointer helyett referenvciával, a visszatérési érték pedig egy átmeneti tárolót határoz meg
   *this = *csapp;           // az assignment és copy konstruktor az = felüldefiniálása, ha le van tiltva akkor nem tud működni
-  //delete csapp; cout << ", amely csapat+= címe: " << csapp;
+  delete csapp; cout << ", amely csapat+= címe: " << csapp;         // itt szabadítjuk fel véglegesen
   return *this; }
 
 void in_ch::ossz_csap()             // metódus
