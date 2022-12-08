@@ -17,6 +17,14 @@ public:
  void setAverage(double avg) { average = avg; }
  virtual void computeSaveAndPrintAverage() {};
  virtual ~Sports() {}
+ Sports& operator+=(Sports& other)
+      {  distance=distance+other.getDistance();
+        time=time+other.getTime();
+        return *this; }
+ void printTotal()
+      { cout << "\nA teljes tav: " << getDistance()/eZ << " [km]\n"\
+             << "A cel ido: " << (int)getTime()/oRA << ":" << (int)getTime()%oRA/pRC\
+             << ":" << (int)getTime()%oRA%pRC << " [h:m:s]" << endl; }
 };
 
 class Swimming : public Sports
