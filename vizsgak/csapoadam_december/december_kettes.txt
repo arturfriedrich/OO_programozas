@@ -1,0 +1,69 @@
+// KETTESÉRT
+// MAIN:
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <typeinfo>
+
+#include "megoldas_dani.hpp"
+
+int main()
+{
+    static_assert(std::is_abstract<EtlapElem>(), "Hiba! EtlapElem osztaly nem absztrakt!");
+    EtlapElem *ee1 = new Leves("Magocskas leves", 450);
+    EtlapElem *ee2 = new Leves("Frankfurti leves", 800);
+    EtlapElem *ee3 = new Foetel("Paprikas csirke", "rizs", 1200);
+    EtlapElem *ee4 = new Foetel("Paprikas csirke", "hasabburgonya", 1500);
+    ee1->print();
+    ee2->print();
+    ee3->print();
+    ee4->print();
+
+    delete ee1;
+    delete ee2;
+    delete ee3;
+    delete ee4;
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------
+// MEGOLDÁS CSAPÓ
+#include <iostream>
+#include <string>
+#include <vector>
+#include <typeinfo>
+
+class EtlapElem
+{
+protected:
+    std::string nev;
+    int ar;
+
+public:
+    EtlapElem(std::string nev, int ar) : nev(nev), ar(ar) {}
+    virtual ~EtlapElem() {}
+    virtual void print() = 0;
+};
+
+class Leves : public EtlapElem
+{
+public:
+    Leves(std::string nev, int ar) : EtlapElem(nev, ar) {}
+    void print()
+    {
+        std::cout << nev << " - " << ar << " Ft" << std::endl;
+    }
+};
+
+class Foetel : public EtlapElem
+{
+    std::string koret;
+
+public:
+    Foetel(std::string nev, std::string koret, int ar) : EtlapElem(nev, ar), koret(koret) {}
+    void print()
+    {
+        std::cout << nev;
+        std::cout << " " << koret << " korettel - ";
+        std::cout << ar << " Ft" << std::endl;
+    }

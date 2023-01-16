@@ -1,0 +1,238 @@
+// MAIN ÖTÖSÉRT
+#include <iostream>
+#include <string>
+#include <vector>
+#include <typeinfo>
+
+#include "megoldas_dani.hpp"
+
+int main()
+{
+    static_assert(std::is_abstract<EtlapElem>(), "Hiba! EtlapElem osztaly nem absztrakt!");
+
+    Etlap e1;
+    e1.hozzaad(new Leves("Magocskas leves", 450));
+    e1.hozzaad(new Leves("Frankfurti leves", 800));
+    e1.hozzaad(new Foetel("Paprikas csirke", "rizs", 1200));
+
+    Ital *cc = new Ital("Coca Cola", 500);
+    cc->print();
+    e1.hozzaad(cc);
+
+    Etlap e2(e1);
+    e2.hozzaad(new Foetel("Paprikas csirke", "hasabburgonya", 1500));
+
+    e2.print();
+
+    return 0;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+// MEGOLDÁS CSAPÓ
+#include <iostream>
+#include <string>
+#include <vector>
+#include <typeinfo>
+
+class EtlapElem
+{
+protected:
+    std::string nev;
+    int ar;
+
+public:
+    EtlapElem(std::string nev, int ar) : nev(nev), ar(ar) {}
+    virtual ~EtlapElem() {}
+    virtual void print() = 0;
+    virtual EtlapElem *copy() = 0;
+};
+
+class Leves : public EtlapElem
+{
+public:
+    Leves(std::string nev, int ar) : EtlapElem(nev, ar) {}
+    void print()
+    {
+        std::cout << nev << " - " << ar << " Ft" << std::endl;
+    }
+    Leves *copy()
+    {
+        return new Leves(nev, ar);
+    }
+};
+
+class Foetel : public EtlapElem
+{
+    std::string koret;
+
+public:
+    Foetel(std::string nev, std::string koret, int ar) : EtlapElem(nev, ar), koret(koret) {}
+    void print()
+    {
+        std::cout << nev;
+        std::cout << " " << koret << " korettel - ";
+        std::cout << ar << " Ft" << std::endl;
+    }
+    Foetel *copy()
+    {
+        return new Foetel(nev, koret, ar);
+    }
+};
+
+class Ital : public EtlapElem
+{
+public:
+    Ital(std::string nev, int ar) : EtlapElem(nev, ar) {}
+    void print()
+    {
+        std::cout << nev << " - " << ar << " Ft" << std::endl;
+    }
+    Ital *copy()
+    {
+        return new Ital(nev, ar);
+    }
+};
+
+class Etlap
+{
+    std::vector<EtlapElem *> elemek;
+
+public:
+    ~Etlap()
+    {
+        for (EtlapElem *ee : elemek)
+        {
+            delete ee;
+        }
+    }
+    Etlap() {}
+    Etlap(Etlap &other)
+    {
+        for (EtlapElem *ee : other.elemek)
+        {
+            elemek.push_back(ee->copy());
+        }
+    }
+    void hozzaad(EtlapElem *ee)
+    {
+        elemek.push_back(ee);
+    }
+    void print()
+    {
+        std::cout << "Etlap:" << std::endl;
+        for (EtlapElem *ee : elemek)
+        {
+            ee->print();
+            if (dynamic_cast<Ital *>(ee))
+            {
+                std::cout << "Inni muszaj..." << std::endl;
+            }
+        }
+    }
+};
+------------------------------------------------------------------------------------------------------------------------------------------------------
+// MEGOLDÁS ZSOMBI
+#include <iostream>
+#include <string>
+#include <vector>
+#include <typeinfo>
+
+class EtlapElem
+{
+protected:
+    std::string nev;
+    int ar;
+
+public:
+    EtlapElem(const std::string &name, int ar) : nev(name), ar(ar) {}
+    virtual void print() = 0;
+    virtual EtlapElem *copy() = 0;
+    virtual ~EtlapElem() {}
+};
+
+class Leves : public EtlapElem
+{
+public:
+    Leves(const std::string &name, int ar) : EtlapElem(name, ar) {}
+    void print()
+    {
+        std::cout << nev << " - " << ar << " Ft" << std::endl;
+    }
+    EtlapElem *copy()
+    {
+        return new Leves(nev, ar);
+    }
+    ~Leves() {}
+};
+
+class Foetel : public EtlapElem
+{
+    std::string koret;
+
+public:
+    Foetel(const std::string &name, const std::string &koret, int ar)
+        : EtlapElem(name, ar), koret(koret) {}
+    void print()
+    {
+        std::cout << nev << " " << koret << " korettel"
+                  << " - " << ar << " Ft" << std::endl;
+    }
+    EtlapElem *copy()
+    {
+        return new Foetel(nev, koret, ar);
+    }
+    ~Foetel() {}
+};
+
+class Ital : public EtlapElem
+{
+public:
+    Ital(const std::string &name, int ar) : EtlapElem(name, ar) {}
+    void print()
+    {
+        std::cout << nev << " - " << ar << " Ft" << std::endl;
+    }
+    EtlapElem *copy()
+    {
+        return new Ital(nev, ar);
+    }
+};
+
+class Etlap
+{
+    std::vector<EtlapElem *> etelek;
+
+public:
+    Etlap() {}
+    Etlap(const Etlap &etlap1)
+    {
+        for (EtlapElem *etel : etlap1.etelek)
+        {
+            etelek.push_back(etel->copy());
+        }
+    }
+    void hozzaad(EtlapElem *etel)
+    {
+        etelek.push_back(etel);
+    }
+    void print()
+    {
+        std::cout << "Etlap: " << std::endl;
+        for (EtlapElem *etel : etelek)
+        {
+            etel->print();
+            if (dynamic_cast<Ital *>(etel))
+            {
+                std::cout << "Inni muszaj..." << std::endl;
+            }
+        }
+    }
+    ~Etlap()
+    {
+        for (EtlapElem *etel : etelek)
+        {
+            delete etel;
+            etel = 0;
+        }
+    }
+};
