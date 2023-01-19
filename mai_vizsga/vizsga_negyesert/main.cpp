@@ -3,7 +3,7 @@
 #include <vector>
 #include <typeinfo>
 
-#include "harmasert.hpp"
+#include "negyesert.hpp"
 
 int main() {
     static_assert(std::is_abstract<TriRace>(), "Hiba! TriRace osztaly nem absztrakt!");
@@ -12,10 +12,9 @@ int main() {
     TriRace* dist3 = new Ironman(3800, 180000, 42195);
 
     std::vector<TriRace*> allRaceDistances = { dist1, dist2, dist3 };
-    printRaceDistancesOfRaceTypes(allRaceDistances);
-
-    std::vector<TriRace*> allRaceDistances2 = { dist2, dist3, dist1 };
-    printRaceDistancesOfRaceTypes(allRaceDistances2);
+    printNamesofRaceTypes(allRaceDistances);
+    std::vector<TriRace*> allRaceDistances2 = { dist3, dist2, dist1 };
+    printNamesofRaceTypes(allRaceDistances2);
 
     delete dist1;
     delete dist2;

@@ -21,6 +21,18 @@ class TriRace
     int getRunning() { return this->running; }
 };
 
+class MultiRace : public TriRace {
+  	std::vector<TriRace*> races;
+	public:
+		MultiRace() { }
+		
+		}
+		void saveAndPrintRaceDistance() override {
+					std::cout << "Az aggregalt tavu verseny hossza: " << 77.25 << " [km]" << std::endl;
+		}  
+		~MutiRace() { }
+};
+
 class Sprint : public TriRace
 {
     public:
@@ -97,5 +109,19 @@ void printRaceDistancesOfRaceTypes(std::vector<TriRace*>& versenyek) {
 		}
 		n++;  
 	}
+    }
+}
+
+void printNamesofRaceTypes(std::vector<TriRace*>& versenyek) {
+    for(TriRace* verseny : versenyek) {
+        if( dynamic_cast<Sprint*>(verseny) ) {
+            std::cout << "Sprint tav" << std::endl;
+        }
+        else if ( dynamic_cast<Olympic*>(verseny) ) {
+            std::cout << "Olimpiai tav" << std::endl;
+        }
+        else if ( dynamic_cast<Ironman*>(verseny) ) {
+            std::cout << "Hosszu tav" << std::endl;
+        }
     }
 }

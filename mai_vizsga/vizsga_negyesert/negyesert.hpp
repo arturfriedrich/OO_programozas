@@ -99,3 +99,17 @@ void printRaceDistancesOfRaceTypes(std::vector<TriRace*>& versenyek) {
 	}
     }
 }
+
+void printNamesofRaceTypes(std::vector<TriRace*>& versenyek) {
+    for(TriRace* verseny : versenyek) {
+        if(dynamic_cast<Sprint*>(verseny) ) {
+        std::cout << "Sprint tav" << std::endl;
+        }
+        else if(dynamic_cast<Olympic*>(verseny) ) {
+        std::cout << "Olimpiai tav" << std::endl;
+        }
+        else if(dynamic_cast<Ironman*>(verseny)) {
+        std::cout << "Hosszu tav" << std::endl;
+        }
+    }
+}
