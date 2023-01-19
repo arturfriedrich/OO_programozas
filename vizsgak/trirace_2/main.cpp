@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "/home/g14/uni/sze_oo_programozas/mintavizsga/minta_vizsga_4/megoldas_dani.hpp"
+#include "megoldas_dani.hpp"
 using namespace std;
 
 int main()
