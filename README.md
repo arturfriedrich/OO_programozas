@@ -14,5 +14,7 @@ A félév végén vizsga van. Számítógépes teremben a Programozás tárgyoz 
    [GitHub repository](https://github.com/csapoadam/oop-gyak-2022-osz)
 - Horváth Zsolt (horzsol@sze.hu, http://rs1.sze.hu/~horzsol/)
 
+`Disclamer:`
+Az anyagot a 2022/23/1 félév óta nem frissítettem, így a tartalma elavult is lehet.
 
 PS.: Ha segített a repo felkészülni a vizsgára, egy csillagot azért dobhatsz, köszi <3
