@@ -1,4 +1,4 @@
-# OO programozás GKNB_INTM085
+# OO programozás GKNB_INTM085 - 2022
 Az anyagok a 2022/2023 1. félévben kerültek leadásra és azóta nem is lettek frissítve.
 Ez a repository a Széchenyi István Egyetem OO programozás (GKNB_INTM085) tárgy előadásának és gyakorlatainak anyagait gyűjti össze.
 A programkódokat nem én állítottam össze, csak kommentelést és pár apróbb változtatást eszközöltem rajtuk. Ilyen például, hogy Unix alapú rendszerekben a main.cpp fájlokba az 1.cpp-t kell importálni, míg Windows-on a Decl.hpp-t. 
